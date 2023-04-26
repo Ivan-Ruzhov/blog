@@ -1,0 +1,95 @@
+.article {
+  display: flex;
+  width: 941px;
+  height: 140px;
+  border-radius: 5px;
+  background: #FFFFFF;
+  &__first-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 85px 24px 19px;
+    &-header {
+      display: flex;
+      width: auto;
+      height: 40px;
+      &-title {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 28px;
+        display: flex;
+        align-items: center;
+      }
+      &-button {
+        display: flex;
+        background-image: url("../../image/heart 1.svg");
+        background-color: #FFFFFF;
+        width: 16px;
+        height: 16px;
+        margin: auto 5px auto 15px;
+      }
+      &-likes {
+        display: flex;
+        margin: auto 0;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 22px;
+      }
+    }
+    &-tags {
+      display: flex;
+      flex-basis: 100px;
+      max-height: 20px;
+      &-tag {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+        padding: 3px 5px;
+        max-height: 20px;
+        border:  1px solid rgba(0, 0, 0, 0.5);
+        border-radius: 2px;
+      }
+    }
+    &-description {
+      width: 682px;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 22px;
+      overflow-wrap: break-word;
+    }
+  }
+  &__user-wrapper {
+    display: flex;
+    margin: 15px 14px auto auto;
+    &-user-info {
+      display: flex;
+      flex-direction: column;
+      &-username {
+        width: 100px;
+        display: flex;
+        align-items: center;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 28px;
+        overflow-wrap: anywhere;
+      }
+      &-date-registration {
+        display: flex;
+        align-items: center;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 22px;
+      }
+    }
+    &-user-avatar {
+      width: 46px;
+      height: 46px;
+      &-image {
+        width: 46px;
+        height: 46px;
+      }
+    }
+  }
+}
