@@ -6,7 +6,7 @@ import { Profile } from '../Profile'
 import { Registration } from '../Registration'
 import { createArticle } from '../Create-article'
 import { Header } from '../Header'
-// import { Article } from '../Article'
+import { ArticleDetails } from '../Article-details'
 import { ListArticle } from '../List-article'
 
 import classes from './App.module.scss'
@@ -17,11 +17,17 @@ const App = () => {
     <>
       <Router>
         <Header />
-        <div>Главная</div>
         <Route path="/" component={ListArticle} exact />
-        <Route path="/authorization" component={Authorization} />
+        <Route path="/articles" component={ListArticle} exact />
+        <Route
+          path="/articles/:slug"
+          render={({ match }) => {
+            return <ArticleDetails params={match} />
+          }}
+        />
+        <Route path="/sign-in" component={Authorization} />
         <Route path="/profile" component={Profile} />
-        <Route path="/registration" component={Registration} />
+        <Route path="/sign-up" component={Registration} />
         <Route path="/create-article" component={createArticle} />
       </Router>
     </>

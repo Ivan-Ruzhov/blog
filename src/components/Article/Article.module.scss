@@ -1,17 +1,18 @@
 .article {
   display: flex;
   width: 941px;
-  height: 140px;
+  height: auto;
   border-radius: 5px;
   background: #FFFFFF;
   &__first-wrapper {
     display: flex;
     flex-direction: column;
-    margin: 15px 85px 24px 19px;
+    margin: 15px auto 24px 19px;
     &-header {
       display: flex;
       width: auto;
-      height: 40px;
+      height: 28px;
+      margin-bottom: 6px;
       &-title {
         font-style: normal;
         font-weight: 400;
@@ -50,6 +51,7 @@
         max-height: 20px;
         border:  1px solid rgba(0, 0, 0, 0.5);
         border-radius: 2px;
+        margin-right: 8px;
       }
     }
     &-description {
@@ -60,36 +62,73 @@
       overflow-wrap: break-word;
     }
   }
-  &__user-wrapper {
+  &__second-wrapper {
     display: flex;
-    margin: 15px 14px auto auto;
-    &-user-info {
+    flex-direction: column;
+    &-wrapper-info {
       display: flex;
       flex-direction: column;
-      &-username {
-        width: 100px;
-        display: flex;
-        align-items: center;
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 28px;
-        overflow-wrap: anywhere;
-      }
-      &-date-registration {
-        display: flex;
-        align-items: center;
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 22px;
-      }
     }
-    &-user-avatar {
-      width: 46px;
-      height: 46px;
-      &-image {
+    &-user-wrapper {
+      display: flex;
+      margin: 15px 14px auto auto;
+      &-user-info {
+        display: flex;
+        flex-direction: column;
+        margin-right: 12px;
+        &-username {
+          width: auto;
+          display: flex;
+          align-items: center;
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 28px;
+          overflow-wrap: anywhere;
+        }
+        &-date-registration {
+          display: flex;
+          align-items: center;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 22px;
+          margin-left: auto;
+        }
+      }
+      &-user-avatar {
         width: 46px;
         height: 46px;
+        border-radius: 50%;
+        &-image {
+          border-radius: 50%;
+          width: 46px;
+          height: 46px;
+        }
+      }
+    }
+    &-button-wrapper {
+      display: flex;
+      width: 150px;
+      margin: 30px 14px 0 0;
+      &-buttons {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+        padding: 6px 17px;
+      }
+      &-button-delete {
+        border: 1px solid #F5222D;
+        color: #F5222D;
+        margin-right: 12px
+      }
+      &-button-edit {
+        border: 1px solid #52C41A;
+        color: #52C41A;
       }
     }
   }
+
 }

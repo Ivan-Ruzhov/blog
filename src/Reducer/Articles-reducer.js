@@ -1,14 +1,21 @@
-import { ARTICLES, ERROR, LOADING, END_LOADING } from '../action/type'
+import { ARTICLES, ERROR, LOADING, END_LOADING, ARTICLES_SLUG } from '../action/type'
 
 const defaultState = {
   articlesArr: [],
   err: '',
-  loading: '',
+  loading: true,
   totalArticles: 0,
+  slugArticle: {},
 }
 
 const articlesReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case ARTICLES_SLUG:
+      console.log(action.payload)
+      return {
+        ...state,
+        slugArticle: action.payload,
+      }
     case ARTICLES:
       return {
         ...state,

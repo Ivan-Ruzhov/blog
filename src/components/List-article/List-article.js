@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Pagination } from 'antd'
+import { Pagination, Spin } from 'antd'
 
 import { articleGet } from '../../action/action'
 import { Article } from '../Article'
 
-// import classes from './List-article.module.scss'
+import classes from './List-article.module.scss'
 
 const ListArticle = () => {
   let id = 0
-  const { articlesArr, totalArticles } = useSelector((state) => state.articlesReducer)
-  console.log(articlesArr)
+  const { articlesArr, totalArticles, loading } = useSelector((state) => state.articlesReducer)
   const [offset, setOffset] = useState(0)
   const [page, setPage] = useState(1)
   const count = articlesArr.length
@@ -25,11 +24,25 @@ const ListArticle = () => {
   useEffect(() => {
     dispatch(articleGet(offset))
   }, [offset])
-  const finalArr = articlesArr.map((el) => <Article key={++id} desc={el} />)
+  const finalArr = articlesArr.map((el) => {
+    return (
+      <li className={classes['list-article__article']} key={++id}>
+        <Article desc={el} />
+      </li>
+    )
+  })
   return (
     <>
-      {finalArr}
-      <Pagination total={totalArticles} current={page} onChange={(page) => onChange(page)} />
+      {loading ? (
+        <Spin />
+      ) : (
+        <ul className={classes['list-article']}>
+          {finalArr}
+          <div className={classes['list-article__pagination']}>
+            <Pagination total={totalArticles} current={page} onChange={(page) => onChange(page)} />
+          </div>
+        </ul>
+      )}
     </>
   )
 }

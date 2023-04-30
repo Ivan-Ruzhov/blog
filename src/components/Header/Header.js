@@ -1,28 +1,74 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import classNames from 'classnames'
+
+import { logOut } from '../../action/action'
 
 import classes from './Header.module.scss'
 
 const Header = () => {
-  console.log(classes)
+  const dispatch = useDispatch()
+  const [activeLink, setActiveLink] = useState()
+  const { username, imageURL, login } = useSelector((state) => state.userReducer)
+  const addClass = (id) => {
+    setActiveLink(id)
+    console.log(activeLink)
+  }
   return (
-    <div>
-      <Link to="/">Realworld Blog</Link>
-      <ul>
-        <li>
-          <Link to="/authorization">Sign In</Link>
-        </li>
-        <li>
-          <Link to="/create-article">Create article</Link>
-        </li>
-        <li>
-          <Link to="/profile">
-            Name <img src="" alt="Avatar" />
-          </Link>
-        </li>
-        <li>
-          <Link to="/registration">Sign Up</Link>
-        </li>
+    <div className={classes.header}>
+      <div className={classes['header__link-start']}>
+        <Link to="/">Realworld Blog</Link>
+      </div>
+      <ul className={classes['header__list-links']}>
+        {!login ? (
+          <li
+            className={classNames(classes['header__list-links-link'], {
+              [classes['header__list-links-link-active']]: 'Sing-In' === activeLink,
+            })}
+            onClick={() => addClass('Sing-In')}
+          >
+            <Link to="/sign-in">Sign In</Link>
+          </li>
+        ) : null}
+        {login ? (
+          <li className={`${classes['header__list-links-link']} ${classes['header__list-links-link-create']}`}>
+            <Link to="/create-article">Create article</Link>
+          </li>
+        ) : null}
+        {login ? (
+          <li className={classes['header__list-links-link']}>
+            <Link to="/profile">
+              <span className={classes['header__list-links-link-span']}>{username}</span>
+              {imageURL ? (
+                <img className={classes['header__list-links-image']} src={imageURL} alt="Avatar" />
+              ) : (
+                <img
+                  className={classes['header__list-links-image']}
+                  src="https://static.productionready.io/images/smiley-cyrus.jpg"
+                  alt="Avatar"
+                />
+              )}
+            </Link>
+          </li>
+        ) : null}
+        {!login ? (
+          <li
+            className={classNames(classes['header__list-links-link'], {
+              [classes['header__list-links-link-active']]: 'Sing-Up' === activeLink,
+            })}
+            onClick={() => addClass('Sing-Up')}
+          >
+            <Link to="/sign-up">Sign Up</Link>
+          </li>
+        ) : null}
+        {login ? (
+          <li className={`${classes['header__list-links-link']} ${classes['header__list-links-link-out']}`}>
+            <Link to="/" onClick={() => dispatch(logOut())}>
+              Log Out
+            </Link>
+          </li>
+        ) : null}
       </ul>
     </div>
   )

@@ -1,0 +1,16 @@
+.list-article {
+  display: flex;
+  flex-direction: column;
+  margin: 26px auto 10px auto;
+  background: none;
+  &__article {
+    background: #FFFFFF;
+    border-radius: 5px;
+    margin: 0 auto 26px auto;
+    width: 941px;
+  }
+  &__pagination {
+    display: flex;
+    margin: 0 auto;
+  }
+}

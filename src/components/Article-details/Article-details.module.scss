@@ -1,0 +1,18 @@
+.article-detail {
+  display: flex;
+  flex-direction: column;
+  margin: 24px auto;
+  width: 941px;
+  background-color: #FFFFFF;
+  &__text {
+    display: flex;
+    width: 880px;
+    height: auto;
+    margin: 30px 42px 15px 19px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    flex-direction: column;
+  }
+}
