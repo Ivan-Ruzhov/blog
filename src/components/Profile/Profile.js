@@ -32,14 +32,14 @@ const Profile = () => {
       </label>
       <input
         {...register('username', {
-          required: 'Поле обязательно, для заполнения',
+          required: 'Required field!',
           minLength: {
             value: 3,
-            message: 'минимум 3 символа!',
+            message: 'Field length, at least 3 characters!',
           },
           maxLength: {
             value: 20,
-            message: 'максимум 20 символов',
+            message: 'Field length, maximum 20 characters!',
           },
           pattern: {
             value: /^[a-z][a-z0-9]*$/,
@@ -78,14 +78,14 @@ const Profile = () => {
       </label>
       <input
         {...register('password', {
-          required: 'Поле обязательно, для заполнения',
+          required: 'Required field!',
           minLength: {
             value: 6,
-            message: 'минимум 6 символов!',
+            message: 'Field length, at least 6 characters!',
           },
           maxLength: {
             value: 40,
-            message: 'максимум 40 символов!',
+            message: 'Field length, maximum 40 characters',
           },
           pattern: {
             value: /[A-Za-z0-9]/,

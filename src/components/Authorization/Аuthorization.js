@@ -30,14 +30,14 @@ const Authorization = () => {
       </label>
       <input
         {...register('email', {
-          required: 'Поле обязательно, для заполнения',
+          required: 'Required field!',
           minLength: {
             value: 5,
-            message: 'минимум 5 символов!',
+            message: 'Field length, at least 5 characters!',
           },
           pattern: {
             value: /^[a-z0-9._%+-]+@[a-z0-9-]+.+.[a-z]{2,4}$/,
-            message: 'You can only use lowercase English letters and numbers',
+            message: 'You can only use English letters and numbers',
           },
         })}
         id="email"
@@ -53,14 +53,14 @@ const Authorization = () => {
       </label>
       <input
         {...register('password', {
-          required: 'Поле обязательно, для заполнения',
+          required: 'Required field!',
           minLength: {
             value: 6,
-            message: 'минимум 6 символов!',
+            message: 'Field length, at least 6 characters!',
           },
           maxLength: {
             value: 40,
-            message: 'максимум 40 символов!',
+            message: 'Field length, maximum 40 characters!',
           },
           pattern: {
             value: /[A-Za-z0-9]/,
@@ -77,7 +77,7 @@ const Authorization = () => {
       {errors.password ? <div className={classes.auth__error}>{errors.password.message}</div> : null}
       <input
         {...register('agree', {
-          required: 'Почтавьте галочку на данном поле!',
+          required: 'Please tick this box!',
         })}
         className={classes.auth__submit}
         type="submit"

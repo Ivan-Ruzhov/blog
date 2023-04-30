@@ -12,10 +12,8 @@ const ArticleDetails = (props) => {
   const { slugArticle, loading } = useSelector((state) => state.articlesReducer)
   const dispatch = useDispatch()
   useEffect(() => {
-    console.log('useEffect')
     dispatch(articleSlug(props.params.params.slug))
   }, [])
-  console.log(Object.keys(slugArticle).length)
   return (
     <>
       {loading ? (

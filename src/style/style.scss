@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+  border: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+input {
+  cursor: pointer;
+}
+
+#root {
+  background-color: #EBEEF3;
+  min-height: 100vh;
+}

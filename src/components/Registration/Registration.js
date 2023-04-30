@@ -28,7 +28,7 @@ const Registration = () => {
       </label>
       <input
         {...register('username', {
-          required: 'Поле обязательно, для заполнения',
+          required: 'Required field',
           minLength: {
             value: 3,
             message: 'минимум 3 символа!',
@@ -54,7 +54,7 @@ const Registration = () => {
       </label>
       <input
         {...register('email', {
-          required: 'Поле обязательно, для заполнения',
+          required: 'Required field',
           minLength: {
             value: 5,
             message: 'минимум 5 символов!',
@@ -76,18 +76,18 @@ const Registration = () => {
       </label>
       <input
         {...register('password', {
-          required: 'Поле обязательно, для заполнения',
+          required: 'Required field!',
           minLength: {
             value: 6,
-            message: 'минимум 6 символов!',
+            message: 'Field length, at least 6 characters!',
           },
           maxLength: {
             value: 40,
-            message: 'максимум 40 символов!',
+            message: 'Field length, maximum 40 characters!',
           },
           pattern: {
             value: /[A-Za-z0-9]/,
-            message: 'You can only use lowercase English letters and numbers',
+            message: 'You can only use English letters and numbers',
           },
         })}
         id="password"
@@ -102,22 +102,22 @@ const Registration = () => {
       </label>
       <input
         {...register('repeat-password', {
-          required: 'Поле обязательно, для заполнения',
+          required: 'Required field!',
           minLength: {
             value: 6,
-            message: 'минимум 6 символов!',
+            message: 'Field length, at least 6 characters!',
           },
           maxLength: {
             value: 40,
-            message: 'максимум 40 символов!',
+            message: 'Field length, maximum 40 characters!',
           },
           pattern: {
             value: /[A-Za-z0-9]/,
-            message: 'You can only use lowercase English letters and numbers',
+            message: 'You can only use English letters and numbers',
           },
           validate: (value, formValues) => {
             if (value !== formValues.password) {
-              return 'пароли не совпадают!'
+              return 'Password mismatch!'
             }
           },
         })}
@@ -133,7 +133,7 @@ const Registration = () => {
       <div className={classes.regist__container}>
         <input
           {...register('agree', {
-            required: 'Почтавьте галочку на данном поле!',
+            required: 'Please tick this box!',
           })}
           id="agree"
           type="checkbox"
