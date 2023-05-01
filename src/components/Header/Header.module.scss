@@ -56,16 +56,20 @@
       display: flex;
       text-decoration: none;
       align-items: center;
-      margin: auto;
+      margin: 0 auto !important;
     }
     &-link-create {
       margin: auto 0;
       color: #52C41A;
+      height: 24px;
       border: 1px solid #52C41A;
       border-radius: 5px;
+      padding: 9px 10px;
     }
     &-link-create a {
+      display: flex;
       color: #52C41A;
+      margin: 0;
     }
     &-link-out {
       width: 109px;

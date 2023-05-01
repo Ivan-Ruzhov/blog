@@ -59,7 +59,7 @@ const Article = ({ desc, isFullArticle = false }) => {
               <button
                 className={`${classes['article__second-wrapper-button-wrapper-buttons']} ${classes['article__second-wrapper-button-wrapper-button-edit']}`}
               >
-                Edit
+                <Link to="/articles/{slug}/edit">Edit</Link>
               </button>
             </div>
           ) : null}

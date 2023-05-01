@@ -1,2 +1,2 @@
-import { createArticle } from './Create-article'
-export { createArticle }
+import { CreateArticle } from './Create-article'
+export { CreateArticle }

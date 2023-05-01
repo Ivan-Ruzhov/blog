@@ -3,7 +3,7 @@ import { useForm, useFieldArray, Controller } from 'react-hook-form'
 
 import classes from './Create-article.module.scss'
 
-const createArticle = ({ edit }) => {
+const CreateArticle = ({ edit }) => {
   console.log(classes)
   const {
     register,
@@ -49,7 +49,7 @@ const createArticle = ({ edit }) => {
         })}
         placeholder="Title"
       />
-      {errors.title ? <div>{errors.title.message}</div> : null}
+      {errors.title ? <div className={classes.created__error}>{errors.title.message}</div> : null}
       <label className={classes.created__label} htmlFor="description">
         Short description
       </label>
@@ -69,7 +69,7 @@ const createArticle = ({ edit }) => {
         })}
         placeholder="Title"
       />
-      {errors.description ? <div>{errors.description.message}</div> : null}
+      {errors.description ? <div className={classes.created__error}>{errors.description.message}</div> : null}
       <label className={classes.created__label} htmlFor="text">
         Text
       </label>
@@ -89,7 +89,7 @@ const createArticle = ({ edit }) => {
         })}
         placeholder="Text"
       />
-      {errors.text ? <div>{errors.text.message}</div> : null}
+      {errors.text ? <div className={classes.created__error}>{errors.text.message}</div> : null}
       <h3 className={classes.created__label}>Tags</h3>
       <div className={classes['created__tags-container']}>
         <ul className={classes['created__tag-list']}>
@@ -117,7 +117,9 @@ const createArticle = ({ edit }) => {
                     />
                   )}
                 />
-                {errors[`tag-${index}`] ? <div>{errors[`tag-${index}`].message}</div> : null}
+                {errors[`tag[${index}].tagNAme`] ? (
+                  <div className={classes.created__error}>{errors[`tag[${index}].tagNAme`].message}</div>
+                ) : null}
                 <button
                   className={classes['created__button-delete']}
                   type="button"
@@ -148,4 +150,4 @@ const createArticle = ({ edit }) => {
   )
 }
 
-export { createArticle }
+export { CreateArticle }
