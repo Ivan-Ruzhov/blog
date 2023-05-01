@@ -28,7 +28,7 @@ const App = () => {
         <Route path="/sign-in" component={Authorization} />
         <Route path="/profile" component={Profile} />
         <Route path="/sign-up" component={Registration} />
-        <Route path="/create-article" component={createArticle} />
+        <Route path="/new-article" component={createArticle} />
       </Router>
     </>
   )

@@ -1,15 +1,25 @@
 import thunk from 'redux-thunk'
-import { legacy_createStore as createStore, combineReducers, compose, applyMiddleware } from 'redux'
+import { combineReducers } from 'redux'
+import { configureStore } from '@reduxjs/toolkit'
+import storage from 'redux-persist/lib/storage'
+import { persistReducer, persistStore } from 'redux-persist'
 
 import { articlesReducer } from './Articles-reducer'
 import { userReducer } from './User-reducer'
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+const reducer = combineReducers({
+  articlesReducer,
+  userReducer,
+})
+const persistedReducer = persistReducer(persistConfig, reducer)
+export const store = configureStore({
+  reducer: persistedReducer,
+  // eslint-disable-next-line no-undef
+  devTools: process.env.NODE_ENV !== 'production',
+  middleware: [thunk],
+})
 
-const store = createStore(
-  combineReducers({
-    articlesReducer,
-    userReducer,
-  }),
-  compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-)
-
-export { store }
+export const persistor = persistStore(store)

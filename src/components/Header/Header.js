@@ -33,7 +33,7 @@ const Header = () => {
         ) : null}
         {login ? (
           <li className={`${classes['header__list-links-link']} ${classes['header__list-links-link-create']}`}>
-            <Link to="/create-article">Create article</Link>
+            <Link to="/new-article">Create article</Link>
           </li>
         ) : null}
         {login ? (
