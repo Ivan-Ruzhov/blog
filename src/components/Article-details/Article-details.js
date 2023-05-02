@@ -18,8 +18,9 @@ const ArticleDetails = (props) => {
   }, [])
   return (
     <>
-      {loading ? (
-        <Spin />
+      {loading ? <Spin /> : null}
+      {!slugArticle ? (
+        <Redirect to="/" />
       ) : (
         <div className={classes['article-detail']}>
           {Object.keys(slugArticle).length && <Article desc={slugArticle} fullArticle />}
@@ -28,7 +29,6 @@ const ArticleDetails = (props) => {
           </div>
         </div>
       )}
-      {!slugArticle ? <Redirect to="/" /> : null}
     </>
   )
 }
