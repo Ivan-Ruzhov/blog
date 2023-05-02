@@ -5,7 +5,8 @@ const defaultState = {
   email: '',
   imageURL: '',
   token: '',
-  login: false,
+  logins: false,
+  registr: false,
 }
 
 const userReducer = (state = defaultState, action) => {
@@ -17,10 +18,13 @@ const userReducer = (state = defaultState, action) => {
         email: action.mail,
         token: action.token,
         imageURL: action.image,
-        login: true,
+        logins: true,
       }
     case REGISTRATION:
-      return state
+      return {
+        ...state,
+        registr: true,
+      }
     case GET_PROFILE:
       return {
         ...state,
@@ -39,7 +43,8 @@ const userReducer = (state = defaultState, action) => {
         email: '',
         imageURL: '',
         token: '',
-        login: false,
+        logins: false,
+        registr: false,
       }
     default:
       return state

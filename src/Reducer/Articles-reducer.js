@@ -1,4 +1,4 @@
-import { ARTICLES, ERROR, LOADING, END_LOADING, ARTICLES_SLUG } from '../action/type'
+import { ARTICLES, ERROR, LOADING, END_LOADING, ARTICLES_SLUG, DELETE_ARTICLE } from '../action/type'
 
 const defaultState = {
   articlesArr: [],
@@ -21,6 +21,11 @@ const articlesReducer = (state = defaultState, action) => {
         ...state,
         articlesArr: action.payload,
         totalArticles: action.total,
+      }
+    case DELETE_ARTICLE:
+      return {
+        ...state,
+        slugArticle: {},
       }
     case ERROR:
       return {

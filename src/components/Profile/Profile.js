@@ -20,7 +20,6 @@ const Profile = () => {
     dispatch(getUser())
   }, [])
   const { username, email, imageURL } = useSelector((state) => state.userReducer)
-  console.log(email)
   const onSubmit = (data) => {
     dispatch(updateProfile(data))
   }

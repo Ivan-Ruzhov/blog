@@ -34,7 +34,9 @@ const ListArticle = () => {
   return (
     <>
       {loading ? (
-        <Spin />
+        <div className={classes.spin}>
+          <Spin size={'large'} />
+        </div>
       ) : (
         <ul className={classes['list-article']}>
           {finalArr}

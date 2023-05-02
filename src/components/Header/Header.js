@@ -10,10 +10,9 @@ import classes from './Header.module.scss'
 const Header = () => {
   const dispatch = useDispatch()
   const [activeLink, setActiveLink] = useState()
-  const { username, imageURL, login } = useSelector((state) => state.userReducer)
+  const { username, imageURL, logins } = useSelector((state) => state.userReducer)
   const addClass = (id) => {
     setActiveLink(id)
-    console.log(activeLink)
   }
   return (
     <div className={classes.header}>
@@ -21,7 +20,7 @@ const Header = () => {
         <Link to="/">Realworld Blog</Link>
       </div>
       <ul className={classes['header__list-links']}>
-        {!login ? (
+        {!logins ? (
           <li
             className={classNames(classes['header__list-links-link'], {
               [classes['header__list-links-link-active']]: 'Sing-In' === activeLink,
@@ -31,12 +30,12 @@ const Header = () => {
             <Link to="/sign-in">Sign In</Link>
           </li>
         ) : null}
-        {login ? (
+        {logins ? (
           <li className={`${classes['header__list-links-link']} ${classes['header__list-links-link-create']}`}>
             <Link to="/new-article">Create article</Link>
           </li>
         ) : null}
-        {login ? (
+        {logins ? (
           <li className={classes['header__list-links-link']}>
             <Link to="/profile">
               <span className={classes['header__list-links-link-span']}>{username}</span>
@@ -52,7 +51,7 @@ const Header = () => {
             </Link>
           </li>
         ) : null}
-        {!login ? (
+        {!logins ? (
           <li
             className={classNames(classes['header__list-links-link'], {
               [classes['header__list-links-link-active']]: 'Sing-Up' === activeLink,
@@ -62,7 +61,7 @@ const Header = () => {
             <Link to="/sign-up">Sign Up</Link>
           </li>
         ) : null}
-        {login ? (
+        {logins ? (
           <li className={`${classes['header__list-links-link']} ${classes['header__list-links-link-out']}`}>
             <Link to="/" onClick={() => dispatch(logOut())}>
               Log Out

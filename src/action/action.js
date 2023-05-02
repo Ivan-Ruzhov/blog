@@ -11,6 +11,7 @@ import {
   GET_PROFILE,
   UPDATE_PROFILE,
   LOG_OUT,
+  DELETE_ARTICLE,
 } from './type'
 
 const article = new ArticlesServes()
@@ -48,7 +49,6 @@ const newUser = (name, mail, password) => (dispatch) => {
 
 const login = (mail, password) => (dispatch) => {
   article.authorization(mail, password).then(({ user }) => {
-    console.log(user)
     dispatch({ type: AUTHORIZATION, username: user.username, mail: user.email, image: user.image })
     sessionStorage.setItem('token', user.token)
   })
@@ -56,20 +56,22 @@ const login = (mail, password) => (dispatch) => {
 
 const getUser = () => (dispatch) => {
   article.getUser().then(({ user }) => {
-    console.log(user)
     dispatch({ type: GET_PROFILE, password: user.password })
   })
 }
 
 const updateProfile = (data) => (dispatch) => {
   article.updateProfile(data).then(({ user }) => {
-    console.log(user)
     dispatch({ type: UPDATE_PROFILE, email: user.email, image: user.image, username: user.username })
   })
 }
 
 const logOut = () => {
   return { type: LOG_OUT }
+}
+
+const deleteArticle = () => {
+  return { type: DELETE_ARTICLE }
 }
 
 const loadingStart = () => {
@@ -86,4 +88,17 @@ const error = (payload) => {
   return { type: ERROR, payload }
 }
 
-export { articleGet, loadingStart, loadingEnd, error, articleSlug, newUser, login, getUser, updateProfile, logOut }
+export {
+  articleGet,
+  loadingStart,
+  loadingEnd,
+  error,
+  articleSlug,
+  newUser,
+  login,
+  getUser,
+  updateProfile,
+  logOut,
+  deleteArticle,
+  article,
+}

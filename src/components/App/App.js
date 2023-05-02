@@ -22,12 +22,14 @@ const App = () => {
         <Route path="/articles" component={ListArticle} exact />
         <Route
           path="/articles/:slug/edit"
-          render={({ match }) => {
-            return <EditArticle params={match} />
+          exact
+          render={() => {
+            return <EditArticle />
           }}
         />
         <Route
           path="/articles/:slug"
+          exact
           render={({ match }) => {
             return <ArticleDetails params={match} />
           }}

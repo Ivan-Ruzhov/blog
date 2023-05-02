@@ -51,14 +51,13 @@
   &__input-tag {
     width: 300px;
     margin-right: 20px;
-    border: 1px solid #D9D9D9;
-    border-radius: 4px;
   }
   &__input-text {
     height: 168px;
-  }
-  &__input-text::placeholder {
-    transform: translateY(-60px);
+    flex-wrap: wrap;
+    cursor: pointer;
+    border: 1px solid #D9D9D9;
+    border-radius: 4px;
   }
   &__tags-container {
     display: flex;

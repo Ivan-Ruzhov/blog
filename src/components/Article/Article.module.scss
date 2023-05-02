@@ -20,6 +20,10 @@
         line-height: 28px;
         display: flex;
         align-items: center;
+        a {
+          text-decoration: none;
+          color: #1890FF;
+        }
       }
       &-button {
         display: flex;
@@ -55,11 +59,13 @@
       }
     }
     &-description {
-      width: 682px;
+      max-width: 682px;
       font-weight: 400;
       font-size: 12px;
       line-height: 22px;
       overflow-wrap: break-word;
+      overflow: hidden;
+      max-height: 40px;
     }
   }
   &__second-wrapper {
@@ -118,6 +124,7 @@
         align-items: center;
         border-radius: 5px;
         padding: 6px 17px;
+        background: #FFFFFF;
       }
       &-button-delete {
         border: 1px solid #F5222D;
@@ -127,7 +134,12 @@
       &-button-edit {
         border: 1px solid #52C41A;
         color: #52C41A;
+        a {
+          color: #52C41A;
+          text-decoration: none;
+        }
       }
+
     }
   }
 
