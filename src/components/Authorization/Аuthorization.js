@@ -11,7 +11,6 @@ import classes from './Authorization.module.scss'
 const Authorization = () => {
   const dispatch = useDispatch()
   const { logins } = useSelector((state) => state.userReducer)
-  console.log(logins)
   const {
     register,
     formState: { errors },

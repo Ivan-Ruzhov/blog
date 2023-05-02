@@ -63,18 +63,25 @@
       cursor: pointer;
     }
     &-link-create {
-      margin: auto 0;
-      color: #52C41A;
-      height: 24px;
-      border: 1px solid #52C41A;
-      border-radius: 5px;
-      padding: 9px 10px;
+      display: flex;
+      margin: auto 26px auto 0;
+      height: 35px;
+      padding: 7px 9px;
+      a {
+        text-decoration: none;
+        height: 29px;
+      }
     }
-    &-link-create a {
+    &-link-create-active {
       display: flex;
       color: #52C41A;
-      margin: 0;
+      border: 1px solid #52C41A;
+      border-radius: 5px;
+      a {
+        color: #52C41A;
+      }
     }
+
     &-link-out {
       width: 109px;
       height: 51px;

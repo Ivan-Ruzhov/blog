@@ -19,7 +19,7 @@ const Registration = () => {
     mode: 'onBlur',
   })
   const onSubmit = (data) => {
-    dispatch(newUser(data.username, data.email, data.password))
+    dispatch(newUser(data.username, data.email))
   }
   return (
     <>

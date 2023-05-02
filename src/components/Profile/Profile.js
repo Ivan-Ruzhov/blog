@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form'
 import classNames from 'classnames'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getUser, updateProfile } from '../../action/action'
+import { updateProfile } from '../../action/action'
 
 import classes from './Profile.module.scss'
 
@@ -16,9 +16,6 @@ const Profile = () => {
     mode: 'onBlur',
   })
   const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(getUser())
-  }, [])
   const { username, email, imageURL } = useSelector((state) => state.userReducer)
   const onSubmit = (data) => {
     dispatch(updateProfile(data))

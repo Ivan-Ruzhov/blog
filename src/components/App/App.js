@@ -10,10 +10,9 @@ import { ArticleDetails } from '../Article-details'
 import { ListArticle } from '../List-article'
 import { EditArticle } from '../Edit-article/'
 
-import classes from './App.module.scss'
 import '../../style/style.scss'
+
 const App = () => {
-  console.log(classes)
   return (
     <>
       <Router>

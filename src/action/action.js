@@ -8,7 +8,6 @@ import {
   ARTICLES_SLUG,
   AUTHORIZATION,
   REGISTRATION,
-  GET_PROFILE,
   UPDATE_PROFILE,
   LOG_OUT,
   DELETE_ARTICLE,
@@ -41,23 +40,23 @@ const articleSlug = (slug) => (dispatch) => {
       dispatch(loadingEnd())
     })
 }
-const newUser = (name, mail, password) => (dispatch) => {
-  article.registration(name, mail, password).then(() => {
+const newUser = (name, mail) => (dispatch) => {
+  article.registration(name, mail).then(() => {
     dispatch({ type: REGISTRATION })
   })
 }
 
 const login = (mail, password) => (dispatch) => {
-  article.authorization(mail, password).then(({ user }) => {
-    dispatch({ type: AUTHORIZATION, username: user.username, mail: user.email, image: user.image })
-    sessionStorage.setItem('token', user.token)
-  })
-}
-
-const getUser = () => (dispatch) => {
-  article.getUser().then(({ user }) => {
-    dispatch({ type: GET_PROFILE, password: user.password })
-  })
+  article
+    .authorization(mail, password)
+    .then(({ user }) => {
+      sessionStorage.setItem('token', user.token)
+      dispatch({ type: AUTHORIZATION, username: user.username, mail: user.email, image: user.image })
+    })
+    .catch((err) => {
+      dispatch(error(err))
+      dispatch(loadingEnd())
+    })
 }
 
 const updateProfile = (data) => (dispatch) => {
@@ -75,12 +74,10 @@ const deleteArticle = () => {
 }
 
 const loadingStart = () => {
-  console.log('loading start')
   return { type: LOADING }
 }
 
 const loadingEnd = () => {
-  console.log('loading end')
   return { type: END_LOADING }
 }
 
@@ -96,7 +93,6 @@ export {
   articleSlug,
   newUser,
   login,
-  getUser,
   updateProfile,
   logOut,
   deleteArticle,

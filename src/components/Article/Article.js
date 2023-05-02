@@ -1,8 +1,9 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { format } from 'date-fns'
 import { Popconfirm } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
+import classNames from 'classnames'
 
 import { article, deleteArticle } from '../../action/action'
 
@@ -11,8 +12,9 @@ import classes from './Article.module.scss'
 const Article = ({ desc, fullArticle }) => {
   const { createdAt, tagList, title, slug, author, description, favoritesCount } = desc
   const date = useMemo(() => format(new Date(createdAt), 'MMMM dd, yyyy'), [createdAt])
+  const [like, setLike] = useState(false)
   const dispatch = useDispatch()
-  const { username } = useSelector((state) => state.userReducer)
+  const { username, login } = useSelector((state) => state.userReducer)
   const { slugArticle } = useSelector((state) => state.articlesReducer)
   const tags = (arr) => {
     if (!arr.length) {
@@ -29,6 +31,14 @@ const Article = ({ desc, fullArticle }) => {
       )
     })
   }
+  const addLike = (slug) => {
+    article.addLikes(slug)
+    setLike(true)
+  }
+  const deleteLike = (slug) => {
+    article.deleteLikes(slug)
+    setLike(false)
+  }
   return (
     <>
       {!slugArticle ? (
@@ -40,7 +50,17 @@ const Article = ({ desc, fullArticle }) => {
               <h2 className={classes['article__first-wrapper-header-title']}>
                 <Link to={`/articles/${slug}`}>{title}</Link>
               </h2>
-              <button className={classes['article__first-wrapper-header-button']}></button>
+              <button
+                className={classNames(classes['article__first-wrapper-header-button'], {
+                  [classes['article__first-wrapper-header-button-like']]: like,
+                })}
+                onClick={() => {
+                  {
+                    like ? deleteLike(slug) : addLike(slug)
+                  }
+                }}
+                disabled={login}
+              ></button>
               <div className={classes['article__first-wrapper-header-likes']}>{favoritesCount}</div>
             </div>
             <div className={classes['article__first-wrapper-tags']}>{tags(tagList)}</div>

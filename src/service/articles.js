@@ -2,7 +2,7 @@ import axios from 'axios'
 
 class ArticlesServes {
   _apiBase = 'https://blog.kata.academy/api/'
-
+  token = sessionStorage.getItem('token')
   async getArticles(page) {
     const params = new URL('articles', this._apiBase)
     params.searchParams.set('limit', '5')
@@ -23,13 +23,12 @@ class ArticlesServes {
     return res.data
   }
 
-  async registration(name, mail, password) {
+  async registration(name, mail) {
     const params = new URL('users', this._apiBase)
     const res = await axios.post(params, {
       user: {
         username: name,
         email: mail,
-        password: password,
       },
     })
     if (res.status !== 200) {
@@ -110,12 +109,10 @@ class ArticlesServes {
     if (res.status !== 200) {
       throw new Error(`WARNING!!!! ${res.status}, please check your internet`)
     }
-    console.log(res.data)
     return res.data
   }
   async updateArticle(slug, title, description, body, tagList) {
     const params = new URL(`articles/${slug}`, this._apiBase)
-    console.log(params)
     const res = await axios.put(
       params,
       {
@@ -135,7 +132,6 @@ class ArticlesServes {
     if (res.status !== 200) {
       throw new Error(`WARNING!!!! ${res.status}, please check your internet`)
     }
-    console.log(res.data)
     return res.data
   }
   async deleteArticle(slug) {
@@ -145,11 +141,40 @@ class ArticlesServes {
         Authorization: `Token ${sessionStorage.getItem('token')}`,
       },
     })
-    console.log(res, res.status)
     if (res.status !== 200 && res.status !== 204) {
       throw new Error(`WARNING!!!! ${res.status}, please check your internet`)
     }
     return res.status
+  }
+  async addLikes(slug) {
+    const params = new URL(`articles/${slug}/favorite`, this._apiBase)
+    const res = await axios.post(
+      params,
+      {
+        slug: slug,
+      },
+      {
+        headers: {
+          Authorization: `Token ${this.token}`,
+        },
+      }
+    )
+    if (res.status !== 200) {
+      throw new Error(`WARNING!!!! ${res.status}, please check your internet`)
+    }
+    return res.data
+  }
+  async deleteLikes(slug) {
+    const params = new URL(`articles/${slug}/favorite`, this._apiBase)
+    const res = await axios.delete(params, {
+      headers: {
+        Authorization: `Token ${this.token}`,
+      },
+    })
+    if (res.status !== 200) {
+      throw new Error(`WARNING!!!! ${res.status}, please check your internet`)
+    }
+    return res.data
   }
 }
 

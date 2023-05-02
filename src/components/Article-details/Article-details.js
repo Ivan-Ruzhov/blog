@@ -11,19 +11,21 @@ import classes from './Article-details.module.scss'
 
 const ArticleDetails = (props) => {
   const { slugArticle, loading } = useSelector((state) => state.articlesReducer)
-  console.log(slugArticle)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(articleSlug(props.params.params.slug))
   }, [])
   return (
     <>
-      {loading ? <Spin /> : null}
-      {!slugArticle ? (
-        <Redirect to="/" />
+      {loading ? (
+        <Spin />
       ) : (
         <div className={classes['article-detail']}>
-          {Object.keys(slugArticle).length && <Article desc={slugArticle} fullArticle />}
+          {Object.keys(slugArticle).length && <Article desc={slugArticle} fullArticle /> ? (
+            <Article desc={slugArticle} fullArticle />
+          ) : (
+            <Redirect to="/" />
+          )}
           <div className={classes['article-detail__text']}>
             <ReactMarkdown>{slugArticle.body}</ReactMarkdown>
           </div>

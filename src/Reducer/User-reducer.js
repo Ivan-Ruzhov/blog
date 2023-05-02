@@ -1,4 +1,4 @@
-import { REGISTRATION, AUTHORIZATION, GET_PROFILE, UPDATE_PROFILE, LOG_OUT } from '../action/type'
+import { REGISTRATION, AUTHORIZATION, UPDATE_PROFILE, LOG_OUT } from '../action/type'
 
 const defaultState = {
   username: '',
@@ -24,11 +24,6 @@ const userReducer = (state = defaultState, action) => {
       return {
         ...state,
         registr: true,
-      }
-    case GET_PROFILE:
-      return {
-        ...state,
-        password: action.password,
       }
     case UPDATE_PROFILE:
       return {

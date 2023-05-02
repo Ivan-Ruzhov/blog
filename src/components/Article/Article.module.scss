@@ -33,6 +33,9 @@
         height: 16px;
         margin: auto 5px auto 15px;
       }
+      &-button-like {
+        background: no-repeat url("../../image/active-heart.svg") 50%  ;
+      }
       &-likes {
         display: flex;
         margin: auto 0;
