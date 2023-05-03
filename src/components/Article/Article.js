@@ -5,7 +5,7 @@ import { Popconfirm } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import classNames from 'classnames'
 
-import { article, deleteArticle } from '../../action/action'
+import { article, deleteArticle, error } from '../../action/action'
 
 import classes from './Article.module.scss'
 
@@ -32,11 +32,11 @@ const Article = ({ desc, fullArticle }) => {
     })
   }
   const addLike = (slug) => {
-    article.addLikes(slug)
+    article.addLikes(slug).catch((err) => dispatch(error(err)))
     setLike(true)
   }
   const deleteLike = (slug) => {
-    article.deleteLikes(slug)
+    article.deleteLikes(slug).catch((err) => dispatch(error(err)))
     setLike(false)
   }
   return (
