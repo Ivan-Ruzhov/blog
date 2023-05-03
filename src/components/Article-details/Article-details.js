@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import ReactMarkdown from 'react-markdown'
 import { Spin } from 'antd'
+import PropTypes from 'prop-types'
 
 import { Article } from '../Article'
 import { articleSlug } from '../../action/action'
@@ -35,4 +36,11 @@ const ArticleDetails = (props) => {
   )
 }
 
+ArticleDetails.defaultProps = {
+  props: {},
+}
+
+ArticleDetails.propTypes = {
+  props: PropTypes.object,
+}
 export { ArticleDetails }

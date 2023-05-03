@@ -4,6 +4,7 @@ import { format } from 'date-fns'
 import { Popconfirm } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import classNames from 'classnames'
+import PropTypes from 'prop-types'
 
 import { article, deleteArticle, error } from '../../action/action'
 
@@ -114,6 +115,16 @@ const Article = ({ desc, fullArticle }) => {
       )}
     </>
   )
+}
+
+Article.defaultProps = {
+  desc: {},
+  fullArticle: false,
+}
+
+Article.propTypes = {
+  desc: PropTypes.object,
+  fullArticle: PropTypes.bool,
 }
 
 export { Article }

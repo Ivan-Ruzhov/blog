@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import { useForm, useFieldArray, Controller } from 'react-hook-form'
+import PropTypes from 'prop-types'
 
 import { article } from '../../action/action'
 
@@ -168,4 +169,13 @@ const CreateArticle = ({ edit, arc }) => {
   )
 }
 
+CreateArticle.defaultProps = {
+  edit: false,
+  arc: {},
+}
+
+CreateArticle.propTypes = {
+  edit: PropTypes.bool,
+  arc: PropTypes.object,
+}
 export { CreateArticle }
