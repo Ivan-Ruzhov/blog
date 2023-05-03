@@ -14,7 +14,7 @@ const Article = ({ desc, fullArticle }) => {
   const date = useMemo(() => format(new Date(createdAt), 'MMMM dd, yyyy'), [createdAt])
   const [like, setLike] = useState(false)
   const dispatch = useDispatch()
-  const { username, login } = useSelector((state) => state.userReducer)
+  const { username, logins } = useSelector((state) => state.userReducer)
   const { slugArticle } = useSelector((state) => state.articlesReducer)
   const tags = (arr) => {
     if (!arr.length) {
@@ -59,7 +59,7 @@ const Article = ({ desc, fullArticle }) => {
                     like ? deleteLike(slug) : addLike(slug)
                   }
                 }}
-                disabled={login}
+                disabled={!logins}
               ></button>
               <div className={classes['article__first-wrapper-header-likes']}>{favoritesCount}</div>
             </div>

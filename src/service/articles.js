@@ -168,7 +168,7 @@ class ArticlesServes {
     const params = new URL(`articles/${slug}/favorite`, this._apiBase)
     const res = await axios.delete(params, {
       headers: {
-        Authorization: `Token ${this.token}`,
+        Authorization: `Token ${sessionStorage.getItem('token')}`,
       },
     })
     if (res.status !== 200) {
