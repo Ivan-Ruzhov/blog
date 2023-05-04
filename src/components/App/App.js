@@ -11,37 +11,46 @@ import { ArticleDetails } from '../Article-details'
 import { ListArticle } from '../List-article'
 import { EditArticle } from '../Edit-article/'
 import { Error } from '../Error'
+import {
+  root,
+  articles,
+  articleDetails,
+  authorization,
+  profile,
+  editArticle,
+  newArticle,
+  registration,
+} from '../Path/Path'
 
 import '../../style/style.scss'
 
 const App = () => {
   const { err } = useSelector((state) => state.articlesReducer)
-  console.log(err)
   return (
     <>
       <Router>
         <Header />
         {err ? <Error /> : null}
-        <Route path="/" component={ListArticle} exact />
-        <Route path="/articles" component={ListArticle} exact />
+        <Route path={root} component={ListArticle} exact />
+        <Route path={articles} component={ListArticle} exact />
         <Route
-          path="/articles/:slug/edit"
+          path={editArticle}
           exact
           render={() => {
             return <EditArticle />
           }}
         />
         <Route
-          path="/articles/:slug"
+          path={articleDetails}
           exact
           render={({ match }) => {
             return <ArticleDetails params={match} />
           }}
         />
-        <Route path="/sign-in" component={Authorization} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/sign-up" component={Registration} />
-        <Route path="/new-article" component={CreateArticle} />
+        <Route path={authorization} component={Authorization} />
+        <Route path={profile} component={Profile} />
+        <Route path={registration} component={Registration} />
+        <Route path={newArticle} component={CreateArticle} />
       </Router>
     </>
   )

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import classNames from 'classnames'
 
 import { login } from '../../action/action'
+import { root, registration } from '../Path/Path'
 
 import classes from './Authorization.module.scss'
 
@@ -24,7 +25,7 @@ const Authorization = () => {
   return (
     <>
       {logins ? (
-        <Redirect to="/articles" />
+        <Redirect to={root} />
       ) : (
         <form className={classes.auth} onSubmit={handleSubmit(onSubmit)}>
           <h2 className={classes.auth__header}>Sign In</h2>
@@ -88,7 +89,7 @@ const Authorization = () => {
           />
           <div className={classes.auth__reference}>
             <span>Don&#39;t have an account?</span>
-            <Link to="/sign-up">Sing up</Link>
+            <Link to={registration}>Sing up</Link>
           </div>
         </form>
       )}

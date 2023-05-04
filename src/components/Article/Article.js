@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { format } from 'date-fns'
 import { Popconfirm } from 'antd'
@@ -6,20 +6,20 @@ import { useDispatch, useSelector } from 'react-redux'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 
-import { article, deleteArticle, error } from '../../action/action'
+import { article, deleteArticle, deleteLike, addLike } from '../../action/action'
+import { root } from '../Path/Path'
 
 import classes from './Article.module.scss'
 
 const Article = ({ desc, fullArticle }) => {
-  const { createdAt, tagList, title, slug, author, description, favoritesCount } = desc
+  const { createdAt, tagList, title, slug, author, description, favoritesCount, favorited } = desc
   const date = useMemo(() => format(new Date(createdAt), 'MMMM dd, yyyy'), [createdAt])
-  const [like, setLike] = useState(false)
   const dispatch = useDispatch()
   const { username, logins } = useSelector((state) => state.userReducer)
   const { slugArticle } = useSelector((state) => state.articlesReducer)
   const tags = (arr) => {
     if (!arr.length) {
-      return <div className={classes['article__first-wrapper-tags-tag']}>Нет тегов</div>
+      return <div className={classes['article__first-wrapper-tags-tag']}>No tags</div>
     }
     return arr.map((el, index) => {
       if (el.length > 20) {
@@ -32,18 +32,16 @@ const Article = ({ desc, fullArticle }) => {
       )
     })
   }
-  const addLike = (slug) => {
-    article.addLikes(slug).catch((err) => dispatch(error(err)))
-    setLike(true)
+  const addLikes = (slug) => {
+    dispatch(addLike(slug))
   }
-  const deleteLike = (slug) => {
-    article.deleteLikes(slug).catch((err) => dispatch(error(err)))
-    setLike(false)
+  const deleteLikes = (slug) => {
+    dispatch(deleteLike(slug))
   }
   return (
     <>
       {!slugArticle ? (
-        <Redirect to="/" />
+        <Redirect to={root} />
       ) : (
         <div className={classes.article}>
           <div className={classes['article__first-wrapper']}>
@@ -53,11 +51,11 @@ const Article = ({ desc, fullArticle }) => {
               </h2>
               <button
                 className={classNames(classes['article__first-wrapper-header-button'], {
-                  [classes['article__first-wrapper-header-button-like']]: like,
+                  [classes['article__first-wrapper-header-button-like']]: favorited && logins,
                 })}
                 onClick={() => {
                   {
-                    like ? deleteLike(slug) : addLike(slug)
+                    favorited ? deleteLikes(slug) : addLikes(slug)
                   }
                 }}
                 disabled={!logins}

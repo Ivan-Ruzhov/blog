@@ -12,6 +12,8 @@ import {
   LOG_OUT,
   DELETE_ARTICLE,
   ERROR_CLEAR,
+  ADD_LIKE,
+  DELETE_LIKE,
 } from './type'
 
 const article = new ArticlesServes()
@@ -116,7 +118,30 @@ const error = (payload) => {
 const errorClear = () => {
   return { type: ERROR_CLEAR }
 }
-
+const addLike = (slug) => (dispatch) => {
+  errorClear()
+  article
+    .addLikes(slug)
+    .then((res) => {
+      dispatch({ type: ADD_LIKE, payload: res.article })
+    })
+    .catch((err) => {
+      dispatch(error(err))
+      dispatch(loadingEnd())
+    })
+}
+const deleteLike = (slug) => (dispatch) => {
+  errorClear()
+  article
+    .deleteLikes(slug)
+    .then((res) => {
+      dispatch({ type: DELETE_LIKE, payload: res.article })
+    })
+    .catch((err) => {
+      dispatch(error(err))
+      dispatch(loadingEnd())
+    })
+}
 export {
   articleGet,
   loadingStart,
@@ -128,5 +153,7 @@ export {
   updateProfile,
   logOut,
   deleteArticle,
+  addLike,
+  deleteLike,
   article,
 }

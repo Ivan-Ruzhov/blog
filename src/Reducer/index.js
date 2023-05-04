@@ -17,8 +17,7 @@ const reducer = combineReducers({
 const persistedReducer = persistReducer(persistConfig, reducer)
 export const store = configureStore({
   reducer: persistedReducer,
-  // eslint-disable-next-line no-undef
-  devTools: process.env.NODE_ENV !== 'production',
+  devTools: window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   middleware: [thunk],
 })
 

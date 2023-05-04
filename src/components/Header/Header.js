@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import classNames from 'classnames'
 
 import { logOut } from '../../action/action'
+import { root, newArticle, registration, profile, authorization } from '../Path/Path'
 
 import classes from './Header.module.scss'
 
@@ -18,7 +19,7 @@ const Header = () => {
     <>
       <div className={classes.header}>
         <div className={classes['header__link-start']}>
-          <Link to="/">Realworld Blog</Link>
+          <Link to={root}>Realworld Blog</Link>
         </div>
         <ul className={classes['header__list-links']}>
           {logins ? (
@@ -28,18 +29,9 @@ const Header = () => {
               })}
               onClick={() => addClass('Create-article')}
             >
-              <Link to="/new-article">Create article</Link>
+              <Link to={newArticle}>Create article</Link>
             </li>
-          ) : (
-            <li
-              className={classNames(classes['header__list-links-link-create'], {
-                [classes['header__list-links-link-create-active']]: 'Create-article' === activeLink,
-              })}
-              onClick={() => addClass('Create-article')}
-            >
-              <Link to="/">Create article</Link>
-            </li>
-          )}
+          ) : null}
           {!logins ? (
             <li
               className={classNames(classes['header__list-links-link'], {
@@ -47,12 +39,12 @@ const Header = () => {
               })}
               onClick={() => addClass('Sing-In')}
             >
-              <Link to="/sign-in">Sign In</Link>
+              <Link to={authorization}>Sign In</Link>
             </li>
           ) : null}
           {logins ? (
             <li className={classes['header__list-links-link']}>
-              <Link to="/profile">
+              <Link to={profile}>
                 <span className={classes['header__list-links-link-span']}>{username}</span>
                 {imageURL ? (
                   <img className={classes['header__list-links-image']} src={imageURL} alt="Avatar" />
@@ -73,12 +65,12 @@ const Header = () => {
               })}
               onClick={() => addClass('Sing-Up')}
             >
-              <Link to="/sign-up">Sign Up</Link>
+              <Link to={registration}>Sign Up</Link>
             </li>
           ) : null}
           {logins ? (
             <li className={`${classes['header__list-links-link']} ${classes['header__list-links-link-out']}`}>
-              <Link to="/" onClick={() => dispatch(logOut())}>
+              <Link to={root} onClick={() => dispatch(logOut())}>
                 Log Out
               </Link>
             </li>

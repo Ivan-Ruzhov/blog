@@ -7,7 +7,13 @@ class ArticlesServes {
     const params = new URL('articles', this._apiBase)
     params.searchParams.set('limit', '5')
     params.searchParams.set('offset', page)
-    const res = await axios.get(params).then((data) => data)
+    const res = await axios
+      .get(params, {
+        headers: {
+          Authorization: `Token ${sessionStorage.getItem('token')}`,
+        },
+      })
+      .then((data) => data)
     if (res.status !== 200) {
       throw new Error(`WARNING!!!! ${res.status}, please check your internet`)
     }
@@ -16,7 +22,13 @@ class ArticlesServes {
 
   async getArticleSlug(slug) {
     const params = new URL(`articles/${slug}`, this._apiBase)
-    const res = await axios.get(params).then((data) => data)
+    const res = await axios
+      .get(params, {
+        headers: {
+          Authorization: `Token ${sessionStorage.getItem('token')}`,
+        },
+      })
+      .then((data) => data)
     if (res.status !== 200) {
       throw new Error(`WARNING!!!! ${res.status}, please check your internet`)
     }
@@ -155,7 +167,7 @@ class ArticlesServes {
       },
       {
         headers: {
-          Authorization: `Token ${this.token}`,
+          Authorization: `Token ${sessionStorage.getItem('token')}`,
         },
       }
     )

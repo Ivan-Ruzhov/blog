@@ -5,6 +5,7 @@ import classNames from 'classnames'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { newUser } from '../../action/action'
+import { authorization } from '../Path/Path'
 
 import classes from './Registration.module.scss'
 
@@ -24,7 +25,7 @@ const Registration = () => {
   return (
     <>
       {registr ? (
-        <Redirect to="/sign-in" />
+        <Redirect to={authorization} />
       ) : (
         <form className={classes.regist} onSubmit={handleSubmit(onSubmit)}>
           <h2 className={classes.regist__header}>Create new account</h2>
@@ -152,7 +153,7 @@ const Registration = () => {
           <input type="submit" value="Create" className={classes.regist__submit} />
           <div className={classes.regist__reference}>
             Already have an account?
-            <Link to="/sign-in">Sign In.</Link>
+            <Link to={authorization}>Sign In.</Link>
           </div>
         </form>
       )}

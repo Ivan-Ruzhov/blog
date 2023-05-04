@@ -1,4 +1,14 @@
-import { ARTICLES, ERROR, LOADING, END_LOADING, ARTICLES_SLUG, DELETE_ARTICLE, ERROR_CLEAR } from '../action/type'
+import {
+  ADD_LIKE,
+  ARTICLES,
+  ARTICLES_SLUG,
+  DELETE_ARTICLE,
+  DELETE_LIKE,
+  END_LOADING,
+  ERROR,
+  ERROR_CLEAR,
+  LOADING,
+} from '../action/type'
 
 const defaultState = {
   articlesArr: [],
@@ -9,11 +19,26 @@ const defaultState = {
 }
 
 const articlesReducer = (state = defaultState, action) => {
+  const findArticle = (arrArticle, article) => {
+    const id = arrArticle.findIndex((el) => el.slug === article.slug)
+    return [...arrArticle.slice(0, id), article, ...arrArticle.slice(id + 1)]
+  }
   switch (action.type) {
     case ARTICLES_SLUG:
-      console.log(action.payload)
       return {
         ...state,
+        slugArticle: action.payload,
+      }
+    case ADD_LIKE:
+      return {
+        ...state,
+        articlesArr: findArticle(state.articlesArr, action.payload),
+        slugArticle: action.payload,
+      }
+    case DELETE_LIKE:
+      return {
+        ...state,
+        articlesArr: findArticle(state.articlesArr, action.payload),
         slugArticle: action.payload,
       }
     case ARTICLES:
